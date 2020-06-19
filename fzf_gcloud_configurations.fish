@@ -1,4 +1,4 @@
-function fzf_ghq
+function fzf_gcloud_configurations
   set -l query (commandline)
   if test -n $query
     set fzf_flags --query "$query"
