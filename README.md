@@ -1,23 +1,23 @@
-# fish-peco
+# fish-fzf
 
-[peco](https://github.com/peco/peco) select functions for fish shell
+fzf wrapper script for fish-shell.
 
 ## Install
 
-[Fisherman](https://github.com/fisherman/fisherman):
+Using [Fisherman](https://github.com/fisherman/fisherman):
 
 ```fish
-fisher takashabe/fish-peco
+fisher takashabe/fish-fzf
 ```
 
 ## Feature
 
-Use peco with:
+Use fzf with:
 
 * [ghq](https://github.com/motemen/ghq)
 * history
 * [z](https://github.com/fisherman/z)
-* [ag](https://github.com/ggreer/the_silver_searcher)
+* [files(use ripgrep)](https://github.com/BurntSushi/ripgrep)
 * [k8s context](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config)
 
 ## Usage
@@ -25,17 +25,35 @@ Use peco with:
 Type the function name on the shell.
 
 ```fish
-peco_select_ghq
+fzf_ghq
 ```
 
-Or you can easily use it by adding key binding to `config.fish`.
+Or you can easily use it by adding key binding to `config.fish`:
 
 ```fish
 function fish_user_key_bindings
-  bind \c] peco_select_ghq      # Ctrl-]
-  bind \cr peco_select_history  # Ctrl-r
-  bind \cj peco_select_z        # Ctrl-j
-  bind \cf peco_select_file     # Ctrl-f
+  bind \c] fzf_ghq      # Ctrl-]
+  bind \cr fzf_history  # Ctrl-r
+  bind \cj fzf_z        # Ctrl-j
+  bind \co fzf_file     # Ctrl-f
+end
+```
+
+advanced usage:
+
+```fish
+function wrap_fzf_history
+  history-merge
+  fzf_history
+end
+
+function wrap_fzf_file
+  fzf_file --preview "bat --style=numbers --color=always --line-range :500 {}"
+end
+
+function fish_user_key_bindings
+  bind \cr wrap_fzf_history
+  bind \co wrap_fzf_file
 end
 ```
 
