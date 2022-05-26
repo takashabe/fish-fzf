@@ -7,7 +7,7 @@ fzf wrapper script for fish-shell.
 Using [Fisherman](https://github.com/fisherman/fisherman):
 
 ```fish
-fisher takashabe/fish-fzf
+fisher install takashabe/fish-fzf
 ```
 
 ## Feature
