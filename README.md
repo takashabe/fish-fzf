@@ -19,6 +19,8 @@ Use fzf with:
 * [z](https://github.com/fisherman/z)
 * [files(use ripgrep)](https://github.com/BurntSushi/ripgrep)
 * [k8s context](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config)
+* gcloud project
+* cd (directory)
 
 ## Usage
 
