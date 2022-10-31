@@ -11,7 +11,7 @@ function fzf_cd
   if test -z $ignore_case
     find . -maxdepth $max_depth -type d | fzf $fzf_flags | read line
   else
-    find . -maxdepth $max_depth -type d | egrep -v $ignore_case | fzf $fzf_flags | read line
+    find . -maxdepth $max_depth -type d | grep -E -v $ignore_case | fzf $fzf_flags | read line
   end
 
   if test $line
