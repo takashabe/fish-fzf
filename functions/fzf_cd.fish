@@ -9,9 +9,9 @@ function fzf_cd
   end
 
   if test -z $ignore_case
-    find . -maxdepth $max_depth -type d | fzf $fzf_flags | read line
+    fd --max-depth $max_depth --type d | fzf $fzf_flags | read line
   else
-    find . -maxdepth $max_depth -type d | grep -E -v $ignore_case | fzf $fzf_flags | read line
+    fd --max-depth $max_depth --type d | grep -E -v $ignore_case | fzf $fzf_flags | read line
   end
 
   if test $line
