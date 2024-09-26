@@ -15,6 +15,7 @@ fisher install takashabe/fish-fzf
 Use fzf with:
 
 * [ghq](https://github.com/motemen/ghq)
+* git switch branch based on [GitHub pull request](https://cli.github.com/manual/gh_pr_list)
 * history
 * [z](https://github.com/fisherman/z)
 * [files(use ripgrep)](https://github.com/BurntSushi/ripgrep)
