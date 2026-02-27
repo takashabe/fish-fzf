@@ -27,9 +27,18 @@ function fzf_gh_pr_wt
   set -l branch_name (echo $selected_pr | awk '{print $1}')
   set -l pr_number (echo $selected_pr | awk '{print $3}' | tr -d '#')
 
-  # fetch PR branch and create/switch worktree
-  git fetch origin pull/$pr_number/head:$branch_name 2>/dev/null
-  git wt $branch_name
+  # resolve GitHub remote from gh-resolved config, fallback to origin
+  set -l remote (git config --get-regexp 'remote\..*\.gh-resolved' 2>/dev/null | head -1 | string replace -r 'remote\.(.+)\.gh-resolved .*' '$1')
+  if test -z "$remote"
+    set remote origin
+  end
+
+  # fetch PR ref to FETCH_HEAD to avoid updating checked-out branches
+  git fetch $remote pull/$pr_number/head 2>/dev/null
+
+  # create worktree from FETCH_HEAD, or switch to existing one
+  git wt $branch_name FETCH_HEAD 2>/dev/null
+  or git wt $branch_name
   commandline -f repaint
   return 0
 end
