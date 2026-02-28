@@ -4,7 +4,7 @@ fzf wrapper script for fish-shell.
 
 ## Install
 
-Using [Fisherman](https://github.com/fisherman/fisherman):
+Using [Fisher](https://github.com/jorgebucaran/fisher):
 
 ```fish
 fisher install takashabe/fish-fzf
@@ -16,11 +16,13 @@ Use fzf with:
 
 * [ghq](https://github.com/motemen/ghq)
 * git switch branch based on [GitHub pull request](https://cli.github.com/manual/gh_pr_list)
+* [git worktree](https://git-scm.com/docs/git-worktree) switching
+* git worktree checkout from [GitHub pull request](https://cli.github.com/manual/gh_pr_list)
 * history
 * [z](https://github.com/fisherman/z)
 * [files(use ripgrep)](https://github.com/BurntSushi/ripgrep)
 * [k8s context](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config)
-* gcloud project
+* [gcloud configurations](https://cloud.google.com/sdk/gcloud/reference/config/configurations)
 * cd (directory)
 
 ## Usage
@@ -38,7 +40,7 @@ function fish_user_key_bindings
   bind \c] fzf_ghq      # Ctrl-]
   bind \cr fzf_history  # Ctrl-r
   bind \cj fzf_z        # Ctrl-j
-  bind \co fzf_file     # Ctrl-f
+  bind \co fzf_file     # Ctrl-o
 end
 ```
 
