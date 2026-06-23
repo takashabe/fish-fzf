@@ -17,6 +17,7 @@ Use fzf with:
 * [ghq](https://github.com/motemen/ghq)
 * git switch branch based on [GitHub pull request](https://cli.github.com/manual/gh_pr_list)
 * [git-wt](https://github.com/k1LoW/git-wt) switching
+* [git-wt](https://github.com/k1LoW/git-wt) worktree from an existing branch (local or remote)
 * [git-wt](https://github.com/k1LoW/git-wt) checkout from [GitHub pull request](https://cli.github.com/manual/gh_pr_list)
 * history
 * [z](https://github.com/fisherman/z)
