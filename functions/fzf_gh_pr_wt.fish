@@ -33,12 +33,19 @@ function fzf_gh_pr_wt
     set remote origin
   end
 
-  # fetch PR ref to FETCH_HEAD to avoid updating checked-out branches
-  git fetch $remote pull/$pr_number/head 2>/dev/null
+  # fetch the PR head into FETCH_HEAD to avoid updating checked-out branches
+  if git fetch $remote pull/$pr_number/head 2>/dev/null
+    # git wt refuses an explicit start-point once the branch name resolves to an
+    # existing branch (origin/<branch> commonly exists for same-repo PRs), so
+    # base the local branch on the freshly fetched head here instead of passing
+    # FETCH_HEAD to git wt. An existing branch is left untouched, so re-running
+    # only attaches/switches to its worktree.
+    if not git show-ref --quiet --verify refs/heads/$branch_name
+      git branch $branch_name FETCH_HEAD
+    end
+  end
 
-  # create worktree from FETCH_HEAD, or switch to existing one
-  git wt $branch_name FETCH_HEAD 2>/dev/null
-  or git wt $branch_name
+  git wt $branch_name
   commandline -f repaint
   return 0
 end
