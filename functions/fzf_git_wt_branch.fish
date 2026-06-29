@@ -21,8 +21,11 @@ function fzf_git_wt_branch
   end
 
   if contains -- $selected $remotes
-    # remote-only branch: create a local branch from the remote-tracking ref
-    git wt (string replace -r '^[^/]+/' '' $selected) $selected
+    # remote-only branch: git wt resolves the short name to the matching
+    # remote-tracking branch and creates the local branch itself. Passing the
+    # remote ref as an explicit start-point is rejected for a name git already
+    # resolves to a branch ("already exists ... start-point is not allowed").
+    git wt (string replace -r '^[^/]+/' '' $selected)
   else
     git wt $selected
   end
